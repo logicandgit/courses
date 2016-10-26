@@ -1,7 +1,7 @@
 def positive_sum(arr):
     total = 0
     for i in arr:
-        total += i if 0 <= i else 0
+        total += i if i >= 0 else 0
     return total
 
 if __name__ == '__main__':
