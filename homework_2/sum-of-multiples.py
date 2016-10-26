@@ -1,5 +1,5 @@
 def sum_mul(n, m):
-    if 0 < n and 0 < m:
+    if n > 0 and m > 0:
         return sum([i for i in range(m) if i % n == 0])
     return 'INVALID'
 
