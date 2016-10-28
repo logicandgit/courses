@@ -1,13 +1,21 @@
+# -*- coding: utf-8 -*-
 import random
 
 # TASK 1
-SOLAR_SYSTEM = {"Mercury": 57.9, "Venus": 108.2, "Earth": 149.6,
-                "Mars": 227.9, "Jupiter": 778.3, "Saturn": 1427.0,
-                "Uranus": 2871.0, "Neptune": 4497.1}
+SOLAR_SYSTEM = {
+    "Mercury": 57.9,
+    "Venus": 108.2,
+    "Earth": 149.6,
+    "Mars": 227.9,
+    "Jupiter": 778.3,
+    "Saturn": 1427.0,
+    "Uranus": 2871.0,
+    "Neptune": 4497.1
+}
 
 
-def print_info_planet():
-    planet, distance = sorted(SOLAR_SYSTEM.items())[random.randint(1, len(SOLAR_SYSTEM.keys())) - 1]
+def show_information_about_random_planet():
+    planet, distance = sorted(SOLAR_SYSTEM.items())[random.randrange(1, len(SOLAR_SYSTEM.keys()))]
     print("Планета {pl} находится в {dist} км от Солнца".format(pl=planet, dist=distance))
 
 
@@ -32,4 +40,4 @@ if __name__ == "__main__":
 
     # TASK 5
     print("Напишите метод, который выводит инормацию о случайной планете.")
-    print_info_planet()
+    show_information_about_random_planet()
