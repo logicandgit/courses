@@ -14,7 +14,7 @@ SOLAR_SYSTEM = {
 }
 
 
-def show_information_about_random_planet():
+def show_planet_info():
     planet, distance = sorted(SOLAR_SYSTEM.items())[random.randrange(1, len(SOLAR_SYSTEM.keys()))]
     print("Планета {pl} находится в {dist} км от Солнца".format(pl=planet, dist=distance))
 
@@ -40,4 +40,4 @@ if __name__ == "__main__":
 
     # TASK 5
     print("Напишите метод, который выводит инормацию о случайной планете.")
-    show_information_about_random_planet()
+    show_planet_info()
