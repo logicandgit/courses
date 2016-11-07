@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import numbers
-
 ALL_BRACKETS = '()[]{}'
 
 
@@ -21,7 +19,7 @@ def check_args(func):
                 raise Exception('Argument №{} is not bracket'.format(args.index(brackets) + 1))
 
             replace = args[-1]
-            if not isinstance(replace, numbers.Number):
+            if not isinstance(replace, int):
                 raise Exception('Argument №{} must be int'.format(args.index(replace) + 1))
             if not (0 <= replace <= 1):
                 raise Exception('Argument №{} must be have value 0 or 1'.format(args.index(replace) + 1))
