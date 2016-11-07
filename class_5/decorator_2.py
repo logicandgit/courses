@@ -11,7 +11,7 @@ def check_args(func):
                 raise Exception('Incorrect count args')
 
             for value in args[:-1]:
-                if type(value) != str:
+                if not isinstance(value, str):
                     raise Exception('Argument №{} must be string'.format(args.index(value) + 1))
                 if not value:
                     raise Exception('Argument №{} cannot be empty'.format(args.index(value) + 1))
