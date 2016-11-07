@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
 
@@ -39,10 +40,12 @@ def replace_sub(string, bracket, new_substring, onlyfirst=1):
 
 def create_description_system(description_file, facts_file, outputf):
     with open(description_file) as description, open(facts_file) as facts, open(outputf, 'w') as output_file:
-        info = description.readline()
-        for fact in facts:
+        for info in description:
+            fact = facts.readline()
             planet, distance, unit, star = fact.split(',')
-            output_file.write(info.format(first=planet, dist=distance, unit=unit, star=star))
+            info = replace_sub(info, '{}', '', 0)
+            res = info.format(planet, distance, unit, star[:-1])
+            output_file.write(res)
 
 
 if __name__ == '__main__':
@@ -65,4 +68,3 @@ if __name__ == '__main__':
 
     except Exception, err:
         print(err.message)
-

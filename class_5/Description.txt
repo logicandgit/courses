@@ -1,1 +1,8 @@
-Планета {first} находится в {dist} {unit} от {star}
+Планета {first} находится в {[first]-dist} {unit} от {star}
+Планета {second} находится в {[second]-dist} {unit} от {star}
+Планета {third} находится в {[third]-dist} {unit} от {star}
+Планета {fourth} находится в {[fourth]-dist} {unit} от {star}
+Планета {fifth} находится в {[fifth]-dist} {unit} от {star}
+Планета {sixth} находится в {[sixth]-dist} {unit} от {star}
+Планета {seventh} находится в {[seventh]-dist} {unit} от {star}
+Планета {eighth} находится в {[eighth]-dist} {unit} от {star}
