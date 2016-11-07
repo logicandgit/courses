@@ -1,24 +1,17 @@
 # -*- coding: utf-8 -*-
-import os
 import sys
 
 
 def fiban(n):
-    first = 1
-    second = 1
-    for i in range(1, n):
-        first, second = second, first + second
-    return first
+    res = [1, 1]
+    for i in range(1, n-1):
+        res.append(res[i-1] + res[i])
+    return res
 
 
 def write_fibanfile(inputf, n):
-    first = 1
-    second = 1
     with open(inputf, 'w') as input_file:
-        for i in range(1, n):
-            input_file.write(str(first) + ', ')
-            first, second = second, first + second
-        input_file.write(str(first))
+        input_file.write(', '.join(str(x) for x in fiban(n)))
 
 if __name__ == '__main__':
     try:
