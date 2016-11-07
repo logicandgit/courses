@@ -50,19 +50,19 @@ def create_description_system(description_file, facts_file, outputf):
 
 if __name__ == '__main__':
     try:
-        # if len(sys.argv) != 4:
-        #     raise Exception('Need two argument, path to files')
+        if len(sys.argv) != 4:
+            raise Exception('Need two argument, path to files')
 
-        # description_file_path, facts_file_path, out_file_path = sys.argv[1:3]
+        description_file_path, facts_file_path, out_file_path = sys.argv[1:4]
 
-        # if not os.path.exists(description_file_path):
-        #     raise Exception('File is absent by path: {}'.format(description_file_path))
+        if not os.path.exists(description_file_path):
+            raise Exception('File is absent by path: {}'.format(description_file_path))
 
-        # if not os.path.exists(facts_file_path):
-        #     raise Exception('File is absent by path: {}'.format(facts_file_path))
-        description_file_path = 'Description.txt'
-        facts_file_path = 'facts.txt'
-        out_file_path = 'Result.txt'
+        if not os.path.exists(facts_file_path):
+            raise Exception('File is absent by path: {}'.format(facts_file_path))
+        # description_file_path = 'Description.txt'
+        # facts_file_path = 'facts.txt'
+        # out_file_path = 'Result.txt'
 
         create_description_system(description_file_path, facts_file_path, out_file_path)
 
