@@ -1,0 +1,8 @@
+Mercury,57.9,million km,Sun
+Venus,108.2,million km,Sun
+Earth,149.6,million km,SUn
+Mars,227.9,million km,Sun
+Jupiter,778.3,million km,Sun
+Saturn,1427.0,million km,Sun
+Uranus,2871.0,million km,Sun
+Neptune,4497.1,million km,Sun
