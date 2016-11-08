@@ -4,6 +4,7 @@ import os
 
 
 def read_file(inputf):
+    #todo without with
     with open(inputf) as input_file:
         print(input_file.read())
 

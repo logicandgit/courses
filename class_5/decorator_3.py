@@ -8,7 +8,10 @@ def logger(path='logs.txt', day=1):
         def replacement_function(*args, **kwargs):
             # count_date = 86400 * day
             count_date = 3600 * day
-            creation_time_file = os.path.getctime(path)
+            if os.path.exists(path):
+                creation_time_file = os.path.getctime(path)
+            else:
+                creation_time_file = time.time()
             now = time.time()
             time_live_file = now - creation_time_file
 
