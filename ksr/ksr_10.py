@@ -27,6 +27,7 @@ def logger(path='logs.txt'):
 
             except Exception, err:
                 with open(path, 'a') as log_file:
+                    log_file.write(str(type(err)))
                     log_file.write(err.message)
             else:
                 return func(*args, **kwargs)
