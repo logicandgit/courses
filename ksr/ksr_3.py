@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 def get_sum_members_number(n):
     sum_numbers = 0
-    temp_value = n
-    while temp_value > 0:
-        temp_value, remainder = divmod(temp_value, 10)
+    while n > 0:
+        n, remainder = divmod(n, 10)
         sum_numbers += remainder
     return sum_numbers
 
