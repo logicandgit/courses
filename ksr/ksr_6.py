@@ -5,8 +5,7 @@ def add_min_member_array(array):
         k, i = divmod(abs(disbalance), 9)
         sign = -1 * abs(disbalance) / disbalance
         list_to_add = [9 * sign] * k
-        if i:
-            array.extend(list_to_add + [i * sign])
+        array.extend(list_to_add + [i * sign]) if i else array.extend(list_to_add)
     return array, sum(array)
 
 if __name__ == '__main__':
