@@ -1,32 +1,13 @@
 # -*- coding: utf-8 -*- 
 def add_min_member_array(array):
-    sum_array = sum(array)
-    all_number = range(-9, 10)
-    if sum_array:
-        diff = sum_array - 0
-
-        if diff > 0:
-            for number in all_number:
-                sum_array = sum(array)
-                diff = sum_array - 0
-
-                if diff + number > 0:
-                    array.append(number)
-                elif not diff + number:
-                    array.append(number)
-                    return array
-
-        if diff < 0:
-            for number in reversed(all_number):
-                sum_array = sum(array)
-                diff = sum_array - 0
-
-                if diff + number < 0:
-                    array.append(number)
-                elif not diff + number:
-                    array.append(number)
-                    return array
-    return array
+    disbalance = sum(array)
+    if disbalance:
+        k, i = divmod(abs(disbalance), 9)
+        sign = -1 * abs(disbalance) / disbalance
+        list_to_add = [9 * sign] * k
+        if i:
+            array.extend(list_to_add + [i * sign])
+    return array, sum(array)
 
 if __name__ == '__main__':
     print add_min_member_array([1, 2, 3, -1, 0, 4])
