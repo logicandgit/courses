@@ -9,6 +9,7 @@ NUMBERS = {
     7: 'семь',
     8: 'восем',
     9: 'девять',
+    10: 'десять',
     11: 'одинадцать',
     12: 'двенадцать',
     13: 'тринадцать',
@@ -39,18 +40,12 @@ NUMBERS = {
 
 
 def get_string_number(number):
-    res_number = []
-    res_string = []
-
-    while number > 0:
-        number, remainder = divmod(number, 10)
-        res_number.append(remainder)
-
-    for i in reversed(res_number):
-        res_string.append(NUMBERS[10 ** res_number.index(i) * i])
-
-    return ' '.join(res_string)
-
+    res = ''
+    for arabic, russian in reversed(sorted(NUMBERS.items())):
+            res += ' ' + number // arabic * russian
+            number %= arabic
+    return ' '.join(res.split())
 if __name__ == '__main__':
     print get_string_number(123)
+    print get_string_number(110)
     print get_string_number(321)
