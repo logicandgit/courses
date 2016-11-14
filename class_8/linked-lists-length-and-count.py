@@ -4,6 +4,7 @@ class Node(object):
         self.data = data
         self.next = None
 
+
 def push(head, data):
     new_node = Node(data)
     new_node.next = head
