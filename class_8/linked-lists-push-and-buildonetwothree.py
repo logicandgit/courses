@@ -6,19 +6,23 @@ class Node(object):
 
 
 def push(head, data):
-    if not head:
-        Node(data)
-    else:
-        Node(data)
-        Node.next = head
-    return Node
+    new_node = Node(data)
+    new_node.next = head
+    head1 = new_node
+    return head1
 
 
 def build_one_two_three():
-    push(None, 3)
-    push(Node(3), 2)
-    push(Node(2), 1)
-    return Node
+    third = push(None, 3)
+    second = push(third, 2)
+    head = push(second, 1)
+
+    return head
 
 if __name__ == '__main__':
     print(push(None, 1).data)
+    print(push(None, 1).next)
+    print(push(Node(1), 2).data)
+    print(push(Node(1), 2).next.data)
+    print
+    print(build_one_two_three().next.next.data)
