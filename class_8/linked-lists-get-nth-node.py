@@ -8,8 +8,7 @@ class Node(object):
 def push(head, data):
     new_node = Node(data)
     new_node.next = head
-    head1 = new_node
-    return head1
+    return new_node
 
 
 def build_one_two_three():
@@ -36,11 +35,10 @@ def get_nth(node, index):
         else:
             raise Exception('None linked list should throw error.')
 
-
-    except Exception:
-        return Exception.message
+    except Exception, err:
+        return err.message
 
 if __name__ == '__main__':
     list_node = build_one_two_three()
     print(get_nth(list_node, -1))
-    # print(get_nth(list_node, 1).data)
+    print(get_nth(list_node, 1).data)
