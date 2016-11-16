@@ -15,9 +15,7 @@ def push(head, data):
 def build_one_two_three():
     third = push(None, 3)
     second = push(third, 2)
-    head = push(second, 1)
-
-    return head
+    return push(second, 1)
 
 
 def length(node):

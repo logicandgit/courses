@@ -8,8 +8,7 @@ class Node(object):
 def push(head, data):
     new_node = Node(data)
     new_node.next = head
-    head1 = new_node
-    return head1
+    return new_node
 
 
 def build_one_two_three():
