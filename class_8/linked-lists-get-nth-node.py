@@ -22,12 +22,11 @@ def build_one_two_three():
 def get_nth(node, index):
     try:
         if node:
-            temp_counter = 0
             if index >= 0:
                 while node:
-                    if temp_counter == index:
+                    if not index:
                         return node
-                    temp_counter += 1
+                    index -= 1
                     node = node.next
                 raise Exception('Invalid index value should throw error.')
             else:
