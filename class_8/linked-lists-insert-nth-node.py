@@ -21,18 +21,18 @@ def build_one_two_three():
 
 def insert_nth(head, index, data):
     try:
-        old_node = head
+        head_node = head
         if index:
             index -= 1
-            while head:
+            while head_node:
                 if not index:
                     new_node = Node(data)
-                    new_node.next = head.next
-                    head.next = new_node
-                    return old_node
+                    new_node.next = head_node.next
+                    head_node.next = new_node
+                    return head
                 index -= 1
                 # old_node = head
-                head = head.next
+                head_node = head_node.next
             raise Exception('Invalid index value should raise error.')
         if not index:
             new_node = Node(data)
