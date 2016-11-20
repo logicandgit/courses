@@ -34,7 +34,7 @@ class Rectangular(Shape):
         return self.elem * self.width
 
     def get_perimeter(self):
-        return 2 * sum(self.elem, self.width)
+        return 2 * self.elem + self.width
 
     def get_location(self):
         pass
