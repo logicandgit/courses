@@ -34,7 +34,7 @@ class Rectangular(Shape):
         return self.elem * self.width
 
     def get_perimeter(self):
-        return 2 * self.elem + self.width
+        return 2 * (self.elem + self.width)
 
     def get_location(self):
         pass
@@ -48,8 +48,8 @@ class Square(Rectangular):
 
 if __name__ == '__main__':
     rect = Rectangular(1, 2)
-    print str(rect)
+    # print str(rect)
     square = Square(4)
-    print str(square)
+    # print str(square)
     print square.get_area()
     print square.get_perimeter()
