@@ -140,5 +140,7 @@ if __name__ == '__main__':
     p3 = Point(2, 2)
     triangele = Triangle(p1, p2, p3)
     print str(triangele)
+    square = Square(4)
+    print str(square)
     # print triangele.get_area()
     # print triangele.get_perimeter()
