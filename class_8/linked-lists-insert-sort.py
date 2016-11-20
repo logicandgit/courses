@@ -23,9 +23,9 @@ def build_one_two_three():
 
 def insert_sort(head):
     if not head:
-        return None
+        return
 
-    def _sorted_insert(head, data):
+    def sorted_insert(head, data):
         head_node = head
         old_node = None
         if head:
@@ -50,7 +50,7 @@ def insert_sort(head):
     head = head.next
 
     while head:
-        res = _sorted_insert(res, head.data)
+        res = sorted_insert(res, head.data)
         head = head.next
 
     return res
