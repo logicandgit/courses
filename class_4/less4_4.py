@@ -5,7 +5,7 @@ def is_magic_square(square):
 
     """
     len_square = len(square)
-    magic_number = len_square*(len_square**2 + 1)/2
+    magic_number = len_square * (len_square ** 2 + 1) / 2
     sum_main_diagonals = 0
     sum_second_diagonals = 0
 
@@ -13,7 +13,7 @@ def is_magic_square(square):
         sum_column = 0
 
         if sum(square[line]) != magic_number:
-            return "Not magic square"
+            return False
 
         for column in range(len_square):
             sum_column += square[column][line]
@@ -25,12 +25,12 @@ def is_magic_square(square):
                 sum_second_diagonals += square[line][column]
 
         if sum_column != magic_number:
-            return "Not magic square"
+            return False
 
     if sum_main_diagonals != magic_number or sum_second_diagonals != magic_number:
-        return "Not magic square"
+        return False
 
-    return "Magic square"
+    return True
 
 
 if __name__ == "__main__":
