@@ -6,10 +6,11 @@ def check_simple(n):
 
 
 def multi(number):
-    for i in reversed(range(number)):
+    result = []
+    for i in range(1, number):
         if (not number % i) and check_simple(i):
-            return i
-    return 1
+            result.append(i)
+    return max(result)
 
 
 if __name__ == "__main__":
