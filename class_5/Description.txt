@@ -1,4 +1,4 @@
-Планета {first} находится в {[first]-dist} {unit} от {star}
+Планета {first} находится в {first-dist} {unit} от {star}
 Планета {second} находится в {[second]-dist} {unit} от {star}
 Планета {third} находится в {[third]-dist} {unit} от {star}
 Планета {fourth} находится в {[fourth]-dist} {unit} от {star}
