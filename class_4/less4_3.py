@@ -7,8 +7,9 @@ def add_sum_last_element(array):
               the amount of the previous same line.
 
     """
-    for line in range(len(array)):
-        array[line].append(sum(array[line]))
+    for internal in array:
+        internal.append(sum(internal))
+
     return array
 
 if __name__ == "__main__":
