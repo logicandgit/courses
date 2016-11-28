@@ -5,10 +5,10 @@ def calculate_average(value, *args):
 def calculate_array(array):
     negative_value = []
 
-    for i in range(2):
-        for y in range(len(array[i])):
-            if array[i][y] < 0:
-                negative_value.append(array[i][y])
+    for i in array:
+        for y in i:
+            if y < 0:
+                negative_value.append(y)
 
     if negative_value:
         return calculate_average(*negative_value)
