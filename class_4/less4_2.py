@@ -5,18 +5,11 @@ def check_uniqueness_array(array):
     :returns: "Unique" or "Not unique"
 
     """
-    res = []
-    len_arrays = 0
-
-    for i in range(len(array)):
-        len_arrays += len(array[i])
-        for y in range(len(array[i])):
-            res.append(array[i][y])
-
-    if len(set(res)) == len_arrays:
-        return "Unique"
-    return "Not unique"
+    for internal in array:
+        if len(set(internal)) != len(internal):
+            return False
+    return True
 
 
 if __name__ == "__main__":
-    print(check_uniqueness_array([[1, 2, 3], [-4, 5, 6]]))
+    print(check_uniqueness_array([[1, 2, 3], [-4, 3, 6]]))
