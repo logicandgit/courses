@@ -1,6 +1,5 @@
 def replace_sub(string, bracket, new_substring, onlyfirst=1):
     res = []
-    enter = 1
     start = 0
     end = len(string)
     marker = 0
@@ -15,7 +14,7 @@ def replace_sub(string, bracket, new_substring, onlyfirst=1):
             else:
                 marker += 1
 
-        if string[ich] == bracket[-1] and enter == 1:
+        if string[ich] == bracket[-1]:
             if marker == 1:
                 res.append(new_substring)
                 res.append(bracket[-1])
