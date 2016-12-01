@@ -2,21 +2,18 @@
 
 import os
 
-from random import randrange
+from random import randint
 
 
 class Crop(object):
-    _growth = 0
-    _days_growing = 0
-    _growth_rate = None
-    _light_need = None
-    _water_need = None
-    _type = 'generic'
-    _status = 'seed'
 
     STATUS = ('seed', 'seeding', 'young', 'mature', 'old')
 
     def __init__(self, growth_rate, light_need, water_need):
+        self._growth = 0
+        self._days_growing = 0
+        self._type = 'generic'
+        self._status = 'seed'
         self._growth_rate = growth_rate
         self._light_need = light_need
         self._water_need = water_need
@@ -68,26 +65,26 @@ class Crop(object):
         # temp, _ = divmod(self.growth, 5)
         if self._growth == 0:
             self._status = Crop.STATUS[0]
-        elif 0 < self._growth < 5:
+        elif 0 < self._growth <= 5:
             self._status = Crop.STATUS[1]
-        elif 5 <= self._growth < 10:
+        elif 5 < self._growth <= 10:
             self._status = Crop.STATUS[2]
-        elif 10 <= self._growth < 15:
+        elif 10 < self._growth <= 15:
             self._status = Crop.STATUS[3]
-        elif self._growth >= 15:
+        elif self._growth > 15:
             self._status = Crop.STATUS[4]
 
     def grow(self, current_light, current_water):
         if (current_light >= self._light_need) and (current_water >= self._water_need):
             self._growth += self._growth_rate
-            self._update_status()
+        self._update_status()
         self._days_growing += 1
 
 
 def auto_grow(crop, days):
     for _ in range(days):
-        ligth = randrange(1, 10)
-        water = randrange(1, 10)
+        ligth = randint(1, 10)
+        water = randint(1, 10)
         crop.grow(ligth, water)
 
 
@@ -99,13 +96,20 @@ def manual_grow(crop):
     exit = False
     while not exit:
         light = raw_input('Enter light: ')
-        water = raw_input('Enter water: ')
-        if check(light) and check(water):
-            crop.grow(light, water)
+        if check(light):
             exit = True
         else:
-            print 'You set bad value: {} or {}. Please choose from 1 to 10'.format(light, water)
-        # if light.isdigit() and  or water
+            print 'You set bad value: {}. Please choose from 1 to 10'.format(light)
+    exit = False
+    while not exit:
+        water = raw_input('Enter water: ')
+        if check(water):
+            exit = True
+        else:
+            print 'You set bad value: {}. Please choose from 1 to 10'.format(water)
+    crop.grow(light, water)
+    exit = True
+    # if light.isdigit() and  or water
 
 
 def manager():
