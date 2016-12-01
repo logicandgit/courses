@@ -2,6 +2,8 @@
 
 import os
 
+from animals import Cow, Sheep
+
 from random import randint
 
 
@@ -81,6 +83,50 @@ class Crop(object):
         self._days_growing += 1
 
 
+class Wheat(Crop):
+
+    def __init__(self, growth_rate, light_need, water_need):
+        self._growth = 0
+        self._days_growing = 0
+        self._type = 'wheat'
+        self._status = 'seed'
+        self._growth_rate = growth_rate
+        self._light_need = light_need
+        self._water_need = water_need
+
+    def _update_status(self):
+        status = self._status
+        super(Wheat, self)._update_status()
+        if status is not self._status:
+            if self._status == 'seeding':
+                self._growth_rate *= 1.5
+            elif self._status == 'young':
+                self._growth_rate *= 1.25
+            elif self._status == 'old':
+                self._growth_rate *= 0.5
+
+
+class Potato(Crop):
+
+    def __init__(self, growth_rate, light_need, water_need):
+        self._growth = 0
+        self._days_growing = 0
+        self._type = 'potato'
+        self._status = 'seed'
+        self._growth_rate = growth_rate
+        self._light_need = light_need
+        self._water_need = water_need
+
+    def _update_status(self):
+        status = self._status
+        super(Potato, self)._update_status()
+        if status is not self._status:
+            if self._status == 'seeding':
+                self._growth_rate *= 1.5
+            elif self._status == 'young':
+                self._growth_rate *= 1.25
+
+
 def auto_grow(crop, days):
     for _ in range(days):
         ligth = randint(1, 10)
@@ -112,12 +158,40 @@ def manual_grow(crop):
     # if light.isdigit() and  or water
 
 
-def manager():
+def main_program():
+    crop = create_crop()
+    manager(crop)
+
+
+def create_crop():
+    valid = False
+    while not valid:
+        print("""
+        Select which crop
+        1 - is wheat
+        2 - is potato
+        3 - is cow
+        4 - is sheep
+        """)
+        choice = raw_input('Set you choice: ')
+        if choice.isdigit() and 1 <= int(choice) <= 4:
+            if int(choice) == 1:
+                return Wheat(1, 1, 1)
+            elif int(choice) == 2:
+                return Potato(1, 1, 1)
+            elif int(choice) == 3:
+                return Cow('asdf')
+            elif int(choice) == 4:
+                return Sheep('vczx')
+        else:
+            print 'You set bad value: {}. Please choose 1 or 4'.format(choice)
+
+
+def manager(example=Crop(1, 1, 1)):
     exit = False
-    example = Crop(1, 1, 1)
     while not exit:
         print ("""
-        Hello %UserName%! It is game.
+        Hello %UserName%! Game is started.
         1 - Manual Grow Crop
         2 - Automatically Grow Crop
         3 - Display Crop Report
@@ -129,7 +203,6 @@ def manager():
 
 def get_menu_choice():
     valid = False
-    value = None
     while not valid:
         choice = raw_input('Set you choice: ')
         if choice.isdigit() and 1 <= int(choice) <= 4:
@@ -151,14 +224,29 @@ def run_choice(corp, choice):
         exit(0)
 
 if __name__ == '__main__':
-    corp1 = Crop(1, 1, 1)
-    corp2 = Crop(2, 2, 2)
-    corp3 = Crop(3, 3, 3)
+    # corp1 = Crop(1, 1, 1)
+    # corp2 = Crop(2, 2, 2)
+    # corp3 = Crop(3, 3, 3)
+    #
+    # print corp2.water_need
+    # print corp1.report()
+    # print corp3.needs()
+    #
+    # auto_grow(corp1, 5)
+    # print corp1.report()
+    # manager()
 
-    print corp2.water_need
-    print corp1.report()
-    print corp3.needs()
+    wheat1 = Wheat(1, 1, 1)
+    print wheat1._growth_rate
+    print wheat1.report()
+    auto_grow(wheat1, 10)
+    print wheat1._growth_rate
+    print wheat1.report()
+    potat1 = Potato(1, 1, 1)
+    print potat1._growth_rate
+    print potat1.report()
+    auto_grow(potat1, 10)
+    print potat1._growth_rate
+    print potat1.report()
 
-    auto_grow(corp1, 5)
-    print corp1.report()
-    manager()
+    main_program()
