@@ -8,18 +8,19 @@ from random import randint
 class Animal(object):
 
     GROWTH_SCALE = {
-        'Seed': lambda growth: growth == 0,
-        'Seedling': lambda growth: 0 < growth <= 10,
-        'Young': lambda growth: 10 < growth <= 20,
-        'Mature': lambda growth: 20 < growth <= 30,
-        'Old': lambda growth: growth > 15
+        'born': lambda growth: growth == 0,
+        'baby': lambda growth: 0 < growth <= 10,
+        'child': lambda growth: 10 < growth <= 20,
+        'young': lambda growth: 20 < growth <= 30,
+        'mature': lambda growth: 30 < growth <= 40,
+        'old': lambda growth: growth > 40
     }
 
     def __init__(self, growth_rate, food_need, water_need, name):
         self._weight = 1
         self._days_growing = 0
         self._type = 'generic'
-        self._status = 'seed'
+        self._status = 'born'
         self._growth_rate = growth_rate
         self._food_need = food_need
         self._water_need = water_need
@@ -71,16 +72,18 @@ class Animal(object):
 
     def _update_status(self):
         # temp, _ = divmod(self.growth, 5)
-        if self.GROWTH_SCALE['Born'](self._weight):
-            self._status = 'Born'
-        elif self.GROWTH_SCALE['Seedling'](self._weight):
-            self._status = 'Seedling'
-        elif self.GROWTH_SCALE['Young'](self._weight):
-            self._status = 'Young'
-        elif self.GROWTH_SCALE['Mature'](self._weight):
-            self._status = 'Mature'
-        elif self.GROWTH_SCALE['Old'](self._weight):
-            self._status = 'Old'
+        if self.GROWTH_SCALE['born'](self._weight):
+            self._status = 'born'
+        elif self.GROWTH_SCALE['baby'](self._weight):
+            self._status = 'baby'
+        elif self.GROWTH_SCALE['child'](self._weight):
+            self._status = 'child'
+        elif self.GROWTH_SCALE['young'](self._weight):
+            self._status = 'young'
+        elif self.GROWTH_SCALE['mature'](self._weight):
+            self._status = 'mature'
+        elif self.GROWTH_SCALE['old'](self._weight):
+            self._status = 'old'
 
     def grow(self, current_food, current_water):
         if (current_food >= self._food_need) and (current_water >= self._water_need):
@@ -97,8 +100,20 @@ class Cow(Animal):
 
     def grow(self, current_food, current_water):
         if (current_food >= self._food_need) and (current_water >= self._water_need):
-            if self.GROWTH_SCALE['Born']:
-                pass
+            if current_water >= self._water_need and current_food >= self._food_need:
+                if self.GROWTH_SCALE['born'](self._weight):
+                    self._weight += self._growth_rate * 1.4
+                elif self.GROWTH_SCALE['baby'](self._weight):
+                    self._weight += self._growth_rate * 1.3
+                elif self.GROWTH_SCALE['child'](self._weight):
+                    self._weight += self._growth_rate
+                elif self.GROWTH_SCALE['young'](self._weight):
+                    self._weight += self._growth_rate
+                elif self.GROWTH_SCALE['mature'](self._weight):
+                    self._weight += self._growth_rate
+                elif self.GROWTH_SCALE['old'](self._weight):
+                    self._weight += self._growth_rate * 0.5
+
         self._update_status()
         self._days_growing += 1
 
@@ -111,15 +126,18 @@ class Sheep(Animal):
 
     def grow(self, food, water):
         if water >= self._water_need and food >= self._food_need:
-            if self.GROWTH_SCALE['Born'](self._weight):
+            if self.GROWTH_SCALE['born'](self._weight):
                 self._weight += self._growth_rate * 1.4
-            elif self.GROWTH_SCALE['Baby'](self._weight):
+            elif self.GROWTH_SCALE['baby'](self._weight):
                 self._weight += self._growth_rate * 1.3
-            elif self.GROWTH_SCALE['Child'](self._weight):
+            elif self.GROWTH_SCALE['child'](self._weight):
                 self._weight += self._growth_rate
-            elif self.GROWTH_SCALE['Young'](self._weight):
+            elif self.GROWTH_SCALE['young'](self._weight):
                 self._weight += self._growth_rate
-            elif self.GROWTH_SCALE['Mature'](self._weight):
+            elif self.GROWTH_SCALE['mature'](self._weight):
                 self._weight += self._growth_rate
-            elif self.GROWTH_SCALE['Old'](self._weight):
+            elif self.GROWTH_SCALE['old'](self._weight):
                 self._weight += self._growth_rate * 0.5
+
+        self._update_status()
+        self._days_growing += 1
