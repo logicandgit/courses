@@ -1,0 +1,4 @@
+username,password,False
+John,Smith,False
+validUser,validPassword,True
+admin,admin,True
