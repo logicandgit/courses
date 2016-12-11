@@ -1,0 +1,17 @@
+[
+    {
+        "isbn": 1234567890, 
+        "name": "Fasdf Asdf", 
+        "author": "Asdfff"
+    }, 
+    {
+        "isbn": 1234567891, 
+        "name": "Fasdf Asdf1", 
+        "author": "Asdfff1"
+    }, 
+    {
+        "isbn": 1234567892, 
+        "name": "Fasdf Asdf2", 
+        "author": "Asdfff2"
+    }
+]

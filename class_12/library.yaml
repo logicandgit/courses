@@ -1,0 +1,12 @@
+- !!python/object:__main__.Book
+  author: Asdfff
+  isbn: 1234567890
+  name: Fasdf Asdf
+- !!python/object:__main__.Book
+  author: Asdfff2
+  isbn: 1234567892
+  name: Fasdf Asdf2
+- !!python/object:__main__.Book
+  author: Asdfff1
+  isbn: 1234567891
+  name: Fasdf Asdf1
