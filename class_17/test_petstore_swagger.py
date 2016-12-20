@@ -84,8 +84,8 @@ class TestSwagger(object):
 
     @pytest.fixture()
     def login_user(self, request, user):
-        url = '{}/login?username={}&password={}'.format(
-            default_url, user['username'], user['password'])
+        url = '{}/login'.format(
+            default_url, auth=(user['username'], user['password']))
         requests.get(url, headers=default_header)
         # todo logout?
         request.addfinalizer(lambda: self.logout_user())
@@ -103,8 +103,8 @@ class TestSwagger(object):
         verify_empty_response(response)
 
     def test_login_user(self, user):
-        url = '{}/login?username={}&password={}'.format(
-            default_url, user['username'], user['password'])
+        url = '{}/login'.format(default_url,
+                                auth=(user['username'], user['password']))
         response = requests.get(url, headers=default_header)
 
         verify_login_response(response)
