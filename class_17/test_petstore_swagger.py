@@ -33,7 +33,7 @@ def verify_login_response(response):
     assert 'logged in user session:' in response.content
 
 
-def verify_user_response(response, user):
+def verify_get_user(response, user):
     assert response.status_code == 200
     assert response.json() == user
 
@@ -45,6 +45,14 @@ def verify_update_user(response, user):
 
 
 class TestSwagger(object):
+    
+    def delete_user(self, user_name):
+        url = '{}/{}'.format(default_url, user_name)
+        requests.delete(url, headers=default_header)
+
+    def logout_user(self):
+        url = '{}/logout'.format(default_url)
+        requests.get(url, headers=default_header)
 
     @pytest.fixture()
     def user_data(self):
@@ -58,14 +66,6 @@ class TestSwagger(object):
             "phone": str(generate_number(7)),
             "userStatus": 0
         }
-
-    def delete_user(self, user_name):
-        url = '{}/{}'.format(default_url, user_name)
-        requests.delete(url, headers=default_header)
-
-    def logout_user(self):
-        url = '{}/logout'.format(default_url)
-        requests.get(url, headers=default_header)
 
     @pytest.fixture()
     def user(self, request, user_data):
@@ -87,7 +87,6 @@ class TestSwagger(object):
         url = '{}/login'.format(
             default_url, auth=(user['username'], user['password']))
         requests.get(url, headers=default_header)
-        # todo logout?
         request.addfinalizer(lambda: self.logout_user())
 
     def test_create_user(self, user_data):
@@ -122,7 +121,7 @@ class TestSwagger(object):
     def test_get_user(self, user):
         url = '{}/{}'.format(default_url, user['username'])
         response = requests.get(url, headers=default_header)
-        verify_user_response(response, user)
+        verify_get_user(response, user)
 
     def test_update_user(self, user):
         new_name = 'newName'
@@ -136,14 +135,15 @@ class TestSwagger(object):
             "phone": '7654321',
             "userStatus": 1
         }
+        
         header = {
             'Content-Type': 'application/json'
         }
         header.update(default_header)
 
         url = '{}/{}'.format(default_url, user['username'])
-        method = ''
-        response = requests.put(url + method, headers=header,
+        response = requests.put(url,
+                                headers=header,
                                 data=json.dumps(new_data))
 
         verify_update_user(response, new_data)
